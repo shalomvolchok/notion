@@ -3,16 +3,18 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const page_id = "24ea75b9b86f4b1699c803440f1236cb";
+
 async function main() {
   const notion = new Client({
     auth: process.env.NOTION_TOKEN,
   });
 
-  const response = await notion.databases.query({
-    database_id: "00c333eebbef42d7941a687a7b8e64d0",
+  const response = await notion.pages.retrieve({
+    page_id,
   });
 
-  console.log("Got response:", response);
+  console.log("Got response:", JSON.stringify(response, null, 4));
 }
 
 main()
